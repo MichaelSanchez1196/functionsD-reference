@@ -1,0 +1,140 @@
+// Name: Michael Sanchez
+// 10/15/15
+// Program that tests functions with pass by reference.
+
+#include<iostream>
+#include<cstdlib>
+#include<cassert>
+using namespace std;
+void sort(int& numA, int& numB, int& numC);
+/****************************************
+    Summary: Function will sort three int values from largest to smallest.
+    PreCondition: Value must be an Int value and inclusively between 0 - 100.
+    PostCondition: Return the order of the sorting in an ascending way.
+****************************************/
+void numDigits(int  valA, int& n);
+/******************************************
+    Summary: Function will find the amount of digit places in an integer.
+    Precondition: Value must be an int value and inclusively between -10000 and 10000.
+    Postcondition: Returns the amount of digit places in the given parameter.
+***************************************/
+void computeSphere(double& a, double& v, double r);
+/***************************************
+    Summary: Finds the area and volume of a sphere.
+    PreCondition: Values must be between 0 and 10000.
+    Postcondition: Returns the Area and Volume.
+*****************************************/
+void swap(int& A, int& B);
+/********************************************
+    Summary: Swaps the two positive integers.
+    Precondition: Values must be int positive.
+    Postcondition: Returns the swap values.
+***********************************************/
+
+int main()
+{
+    int number1= -9,number2=5;
+    int num1=99,num2=1,num3=300;
+    int num;
+    double area,volume,radius=-1;
+    sort(num1,num2,num3);
+    cout << num1 << endl << num2 << endl << num3 << endl;
+   numDigits(-8956,num);
+   cout << num << endl;
+   computeSphere(area, volume, radius);
+   cout << area << endl << volume << endl << radius << endl;
+   swap(number1,number2);
+   cout << number1 << endl << number2 << endl;
+
+    return 0;
+}
+void sort(int& numA, int& numB, int& numC)
+{
+    if (numA < 0 || numB < 0 || numC < 0)
+    {
+        cerr << "Invalid input." << endl;
+        exit(1);   
+    }
+    else if (numA >= 100 || numB >= 100 || numC >= 100)
+    {
+        cerr << "Invalid input." << endl;
+        exit(1);  
+    }
+    else 
+    {
+    int temp;
+    if(numB > numA)
+    {
+        temp = numA;
+        numA = numB;
+        numB = temp;   
+            if(numC > numB)
+            {
+                 temp = numB;
+                 numB = numC;
+                 numC = temp;
+            }
+    }
+    else 
+    {
+        if(numC > numB)
+        {
+            temp = numB;
+            numB = numC;
+            numC = temp;
+        }
+    }
+    if(numB > numA)
+    {
+        temp = numA;
+        numA = numB;
+        numB = temp;        
+    }
+    }   
+}
+void numDigits(int  valA, int& n)
+{
+    if(valA < 0 || valA > 10001)
+    {
+        cerr << "Invalid Input.\n";
+        exit(1);
+    
+    }
+    valA = abs(valA);
+    valA = valA % 10000;
+    cout << valA << endl;  
+    if(valA == 0)
+    n = 5;
+    else if(valA > 0 && valA < 10)
+    n = 1;
+    else if(valA > 9 && valA < 100)
+    n = 2;
+    else if(valA > 99 && valA < 1000)
+    n = 3;
+    else if(valA > 999 && valA < 10000)
+    n = 4;  
+}
+void computeSphere(double& a, double& v, double r)
+{
+    if(r < 0 || r > 10001)
+    {
+        cerr << "Invalid Input.\n";
+        exit(1);
+    
+    }
+    const double PI = 3.14159;
+    
+    v = 4/3 * PI * r * r * r;
+    a = 4 * PI * r * r;
+}
+void swap(int& A, int& B)
+{
+    if(A < 0 || B < 0)
+    {
+        cerr << "Invalid input." << endl;
+        exit(1);
+    }
+    int temp = A;
+    A = B;
+    B = temp;
+}
